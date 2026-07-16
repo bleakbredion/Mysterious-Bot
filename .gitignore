@@ -16,3 +16,7 @@ secret.py
 # Database
 database.db
 *.sqlite3
+
+#Old req
+
+old_requirements.txt
