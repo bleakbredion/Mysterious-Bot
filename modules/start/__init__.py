@@ -1,2 +1,2 @@
 from .labeler import labeler
-from . import handlers
+from . import handler

@@ -7,7 +7,7 @@ bot=Bot(api)
 
 from database.database import init_db
 
-from modules.weather import service
+from modules.weather import service as weather_service
 
 
 from modules.start import labeler as start_labeler
@@ -24,7 +24,7 @@ bot.labeler.load(schedule_labeler)
 bot.labeler.load(invite_labeler)
 bot.labeler.load(info_labeler)
 
-atexit.register(weather_cache.stop)
+atexit.register(weather_service.weather_cache.stop)
 
 
 async def startup():
