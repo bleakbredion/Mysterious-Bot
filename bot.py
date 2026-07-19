@@ -5,7 +5,11 @@ from vkbottle.bot import Bot
 from secret import api
 bot=Bot(api)
 
-from database.database import init_db
+
+from database.init_db import init_db
+
+await init_db()
+
 
 from modules.weather import service as weather_service
 

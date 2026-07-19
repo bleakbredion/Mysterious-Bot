@@ -1,22 +1,31 @@
-# Виртуальное окружение
+# Virtual environment
 .venv/
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 
-# Секреты
-secret.py
+# Secrets
 .env
+secret.py
 
 # IDE
 .vscode/
 .idea/
 
-# Database
-database.db
+# Database files
+database/database.db
+*.db
+*.sqlite
 *.sqlite3
 
-#Old req
-
+# Old requirements
 old_requirements.txt
+
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
