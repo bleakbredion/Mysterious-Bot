@@ -1,14 +1,12 @@
 import asyncio
 import atexit
-
+from logger import logger
 from vkbottle.bot import Bot
 from secret import api
 bot=Bot(api)
 
 
 from database.init_db import init_db
-
-await init_db()
 
 
 from modules.weather import service as weather_service
@@ -35,8 +33,18 @@ bot.labeler.load(common_exit_labeler)
 atexit.register(weather_service.weather_cache.stop)
 
 
-async def startup():
+async def startup_db():
     await init_db()
 
 
-bot.run()
+logger.info("Starting database")
+asyncio.run(startup_db())
+logger.info("Database initialized")
+
+try:
+    bot.run()
+except Exception:
+    logger.exception("Bot crashed")
+    raise
+finally:
+    logger.info("Bot stopped")

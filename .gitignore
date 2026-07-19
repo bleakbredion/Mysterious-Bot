@@ -14,7 +14,7 @@ secret.py
 .idea/
 
 # Database files
-database/database.db
+database/bot.db
 *.db
 *.sqlite
 *.sqlite3
