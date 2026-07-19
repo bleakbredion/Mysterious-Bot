@@ -6,15 +6,15 @@ from .keyboard import menu_date_keyboard
 from .labeler import labeler
 
 # @bot.on.message(PayloadRule({"cmd": re.compile(r"menu_date_\d+")}))
-@labeler.message(text=re.compile(r'^menu_date_([1-9]|1[0-9]|2[0-5])$'))
-async def menu_date(message):
-    date = int(message.payload.get("cmd").split('_')[-1])
-    f = open(f'/home/Rostislav/Mysterius Letka VKBot/menu/menu_{date}.txt').read()
+# @labeler.message(text=re.compile(r'^menu_date_([1-9]|1[0-9]|2[0-5])$'))
+# async def menu_date(message):
+#     date = int(message.payload.get("cmd").split('_')[-1])
+#     f = open(f'/home/Rostislav/Mysterius Letka VKBot/menu/menu_{date}.txt').read()
 
-    await message.answer(
-        f,
-        keyboard=menu_keyboard
-    )
+#     await message.answer(
+#         f,
+#         keyboard=menu_keyboard
+#     )
 
 
 @labeler.message(payload={'cmd': "menu_date"})
@@ -27,7 +27,7 @@ async def menu_date(message):
 
 @labeler.message(payload={'cmd': "menu"})
 async def menu(message):
-    f = open(f'/home/Rostislav/Mysterius Letka VKBot/menu/menu_{MAX_DATE}.txt').read()
+    f = open(f'/home/Rostislav/Mysterius Letka VKBot/modules/menu/data/{MAX_DATE}.txt').read()
     await message.answer(
         f,
         keyboard=menu_keyboard

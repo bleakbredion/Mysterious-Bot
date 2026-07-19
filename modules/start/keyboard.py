@@ -5,13 +5,13 @@ start_keyboard = (
     .add(Text("Меню", payload={'cmd': 'menu'}))
     .row()
 
-    # .add(Text("Кто ночной?", payload={'cmd': 'night'}))
+    .add(Text("Кто ночной?", payload={'cmd': 'night'}))
     .row()
 
-    # .add(Text("Рассписание летки", payload={'cmd': 'shedule'}))
+    .add(Text("Рассписание летки", payload={'cmd': 'shedule'}))
     .row()
 
-    # .add(Text("Общая информация про летку", payload={'cmd': 'common_info'}))
+    .add(Text("Общая информация про летку", payload={'cmd': 'common_info'}))
     .row()
     
     .add(Text("Погода", payload={'cmd': 'weather'}))

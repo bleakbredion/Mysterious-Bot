@@ -1,6 +1,8 @@
 from config import Bot
 from .service import get_temp, get_cloud_cover, get_humidity, get_temp_feel, get_wind, get_last_update
 from .labeler import labeler
+from modules.common.keyboard import back_to_main_menu_keyboard
+
 
 @labeler.message(payload={"cmd": "weather"})
 async def weather(message):
@@ -14,5 +16,5 @@ async def weather(message):
 
     await message.answer(
         f"🌡 Температура: {get_temp()}°C (ощущается как {get_temp_feel()}°C)\n💨 Ветер: {get_wind()} м/с\n💧 Влажность: {get_humidity()}%\n{update_text}",
-        keyboard=keyboard()
+        keyboard=back_to_main_menu_keyboard
     )
