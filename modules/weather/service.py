@@ -177,3 +177,16 @@ if __name__ == "__main__":
     
     # Остановка фонового потока при завершении
     weather_cache.stop()
+
+
+
+
+# import json
+
+# await save_weather(json.dumps(weather, ensure_ascii=False))
+
+# weather, updated_at = await get_weather()
+# weather = json.loads(weather)
+
+# print(weather["temperature"])
+# print(weather["condition"])

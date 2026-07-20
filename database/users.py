@@ -12,7 +12,7 @@ async def add_user(
     role: Role,
 ) -> None:
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             registered_at = get_time().isoformat()
 
             await db.execute(
@@ -54,7 +54,7 @@ async def get_user(
     vk_id: int,
 ):
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             cursor = await db.execute(
                 """
                 SELECT *
@@ -94,7 +94,7 @@ async def update_user(
     role: Role,
 ) -> None:
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             await db.execute(
                 """
                 UPDATE users
@@ -125,7 +125,7 @@ async def update_role(
     role: Role,
 ) -> None:
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             await db.execute(
                 """
                 UPDATE users
@@ -153,7 +153,7 @@ async def update_fullname(
     fullname: str,
 ) -> None:
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             await db.execute(
                 """
                 UPDATE users
@@ -180,7 +180,7 @@ async def delete_user(
     vk_id: int,
 ) -> None:
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             await db.execute(
                 """
                 DELETE FROM users
@@ -203,7 +203,7 @@ async def get_users_by_role(
     role: Role,
 ):
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             cursor = await db.execute(
                 """
                 SELECT *
@@ -226,7 +226,7 @@ async def get_users_by_role(
 
 async def get_all_users():
     try:
-        async with await get_db() as db:
+        async with get_db() as db:
             cursor = await db.execute(
                 """
                 SELECT *
