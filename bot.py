@@ -3,8 +3,11 @@ import atexit
 from logger import logger
 from vkbottle.bot import Bot
 from secret import api
+
+# from modules.common.middleware import UserMiddleware
 bot=Bot(api)
 
+# bot.labeler.message_view.register_middleware(UserMiddleware())
 
 from database.init_db import init_db
 

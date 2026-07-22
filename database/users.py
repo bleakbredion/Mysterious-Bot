@@ -242,3 +242,61 @@ async def get_all_users():
             "Database error while getting all users",
         )
         raise
+
+
+async def create_or_update_user(
+    vk_id: int,
+    fullname: str,
+    role: Role,
+) -> None:
+    try:
+        async with get_db() as db:
+            if await get_user(vk_id) is None:
+                await db.execute(
+                    """
+                    INSERT INTO users (
+                        vk_id,
+                        fullname,
+                        role,
+                        registered_at
+                    )
+                    VALUES (?, ?, ?, ?)
+                    """,
+                    (
+                        vk_id,
+                        fullname,
+                        role.value,
+                        get_time().isoformat(),
+                    ),
+                )
+            else:
+                await db.execute(
+                    """
+                    UPDATE users
+                    SET
+                        fullname = ?,
+                        role = ?
+                    WHERE vk_id = ?
+                    """,
+                    (
+                        fullname,
+                        role.value,
+                        vk_id,
+                    ),
+                )
+
+            await db.commit()
+
+    except aiosqlite.Error:
+        logger.exception(
+            "Database error while creating/updating user vk_id=%s",
+            vk_id,
+        )
+        raise
+
+    except Exception:
+        logger.exception(
+            "Unexpected error while creating/updating user vk_id=%s",
+            vk_id,
+        )
+        raise

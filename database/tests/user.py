@@ -1,12 +1,11 @@
 import asyncio
 
-from database.users import add_user, get_user, update_user
+from database.users import add_user, get_user, update_user, get_all_users
 from database.constants import Role
 
 async def main():
-    await update_user(723227228, "Мирошников Глеб", Role.KOMSENOK)
-    user = await get_user(723227228)
-    print(user)
+    users = await get_all_users()
+    print(users)
 
 
 if __name__ == "__main__":
