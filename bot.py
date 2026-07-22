@@ -50,4 +50,4 @@ except Exception:
     logger.exception("Bot crashed")
     raise
 finally:
-    logger.info("Bot stopped")
+    logger.info("Bot stopped\n\n")
