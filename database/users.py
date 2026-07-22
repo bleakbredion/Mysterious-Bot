@@ -9,7 +9,7 @@ from database.constants import Role
 async def add_user(
     vk_id: int,
     fullname: str,
-    role: Role,
+    role: Role = Role.STUDENT,
 ) -> None:
     try:
         async with get_db() as db:
@@ -17,7 +17,7 @@ async def add_user(
 
             await db.execute(
                 """
-                INSERT INTO users (
+                INSERT OR IGNORE INTO users (
                     vk_id,
                     fullname,
                     role,
@@ -247,7 +247,7 @@ async def get_all_users():
 async def create_or_update_user(
     vk_id: int,
     fullname: str,
-    role: Role,
+    role: Role = Role.STUDENT,
 ) -> None:
     try:
         async with get_db() as db:
@@ -274,18 +274,17 @@ async def create_or_update_user(
                     """
                     UPDATE users
                     SET
-                        fullname = ?,
-                        role = ?
+                        fullname = ?
                     WHERE vk_id = ?
                     """,
                     (
                         fullname,
-                        role.value,
                         vk_id,
                     ),
                 )
 
             await db.commit()
+            logger.info("User with vk_id=%s and fullname%s just added", vk_id, fullname)
 
     except aiosqlite.Error:
         logger.exception(

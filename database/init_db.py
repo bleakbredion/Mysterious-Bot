@@ -13,14 +13,17 @@ async def init_db():
                 registered_at TEXT NOT NULL
             )
         """)
+        # await db.execute("""DROP TABLE menus""")
 
         await db.execute("""
-            CREATE TABLE IF NOT EXISTS menu(
-                date TEXT PRIMARY KEY,
+            CREATE TABLE IF NOT EXISTS menus(
+                id INTEGER PRIMARY KEY,
+                date DATE UNIQUE NOT NULL,
                 breakfast TEXT NOT NULL,
                 lunch TEXT NOT NULL,
                 afternoon TEXT NOT NULL,
                 dinner TEXT NOT NULL,
+                duty_class TEXT,
                 updated_at TEXT NOT NULL
             )
         """)

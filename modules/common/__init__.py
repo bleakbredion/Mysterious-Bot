@@ -1,3 +1,1 @@
-from .labeler import labeler, labeler_exit
-from . import handler
-from . import middleware
+from .labeler import labeler_exit, labeler

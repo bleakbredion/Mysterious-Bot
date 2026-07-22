@@ -1,13 +1,12 @@
 import asyncio
 
-from database.menu import add_menu, get_menu, get_available_dates, delete_menu, update_menu
+from database.menu import add_menu, get_menu, get_available_dates, delete_menu
 from database.constants import Role
-
+from database.database import get_db
 from datetime import date
 
 async def main():
-    await delete_menu(date(2026,8,1))
-    menu = await get_available_dates()
+    menu = await get_menu(date(2026, 8, 2))
     print(menu)
 
 if __name__ == "__main__":

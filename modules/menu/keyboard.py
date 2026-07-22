@@ -1,12 +1,27 @@
 from vkbottle import Keyboard, Text
-from config import MAX_DATE
+from database.menu import get_available_dates
 
 
-menu_date_keyboard = Keyboard(inline=True)
-for i in range(1, MAX_DATE+1):
-    menu_date_keyboard.add(
-        Text(f'{i}.06', payload={'cmd': f'menu_date_{i}'})
-        ).row()
+async def get_menu_keyboard():
+    keyboard = Keyboard(inline=True)
+
+    dates = await get_available_dates()
+
+    for index, menu_date in enumerate(dates, start=1):
+        keyboard.add(
+            Text(
+                menu_date,
+                payload={
+                    "cmd": "menu",
+                    "date": menu_date
+                }
+            )
+        )
+
+        if index % 4 == 0:
+            keyboard.row()
+
+    return keyboard.get_json()
 
 
 menu_keyboard = (
@@ -14,4 +29,5 @@ menu_keyboard = (
     .add(Text("На главную", payload={'cmd': 'start'}))
     .row()
     .add(Text("Назад", payload={'cmd': 'menu_date'}))
+    .get_json()
 )

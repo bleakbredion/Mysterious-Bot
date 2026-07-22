@@ -1,12 +1,12 @@
 from .labeler import labeler
 from .keyboard import start_keyboard
-from modules.common.get_user_info import get_first_name, get_id, get_last_name
-from modules.common.create_or_update_user import create_or_update_user
+from modules.common.get_user_info import get_first_name, get_last_name, get_user_fullname
+from database.users import add_user
 
 
 @labeler.message(text="/start")
 async def start(message):
-    create_or_update_user(get_id, get_first_name, get_last_name)
+    await add_user(message.from_id, await get_user_fullname(message))
     await message.answer(
         "Привет! Что ты хочешь узнать?",
         keyboard=start_keyboard
@@ -14,7 +14,7 @@ async def start(message):
 
 @labeler.message(payload={"cmd": "start"})
 async def menu(message):
-    create_or_update_user(get_id, get_first_name, get_last_name)
+    await add_user(message.from_id, await get_user_fullname(message))
     await message.answer(
         "Что хочешь узнать?",
         keyboard=start_keyboard

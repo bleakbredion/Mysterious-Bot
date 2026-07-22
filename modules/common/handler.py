@@ -1,8 +1,8 @@
 from config import Bot
 from .labeler import labeler_exit
 from .keyboard import back_to_main_menu_keyboard
-from modules.common.get_user_info import get_first_name, get_id, get_last_name
-from modules.common.create_or_update_user import create_or_update_user
+from modules.common.get_user_info import get_first_name, get_last_name, get_user_fullname, get_user_fullname
+from database.users import add_user
 
 
 # @bot.on.message(PayloadRule({"cmd": re.compile(r"menu_date_\d+")}))
@@ -19,7 +19,7 @@ from modules.common.create_or_update_user import create_or_update_user
 
 @labeler_exit.message()
 async def exit_answer(message):
-    create_or_update_user(get_id, get_first_name, get_last_name)
+    await add_user(message.from_id, await get_user_fullname(message))
     await message.answer(
         "Эта функция сейчас недоступна",
         keyboard=back_to_main_menu_keyboard
