@@ -249,6 +249,7 @@ async def create_or_update_user(
     fullname: str,
     role: Role = Role.STUDENT,
 ) -> None:
+
     try:
         async with get_db() as db:
             if await get_user(vk_id) is None:
@@ -299,3 +300,7 @@ async def create_or_update_user(
             vk_id,
         )
         raise
+
+
+
+
