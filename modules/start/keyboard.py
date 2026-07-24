@@ -9,7 +9,7 @@ start_keyboard = (
     .add(Text("Общая информация", payload={'cmd': 'common_info'}))
     .row()
     .add(Text("Погода", payload={'cmd': 'weather'}))
-    .add(Text("Пригласить комсенка", payload={'cmd': 'invite_komsenok'}))
+    .add(Text("Пригласить комсенка", payload={"cmd": "invite_komsenok"}))
     .row()
     .add(Text("Ввести имя пользователя", payload={'cmd': 'add_user_name'}))
 

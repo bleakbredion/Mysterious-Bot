@@ -19,6 +19,9 @@ async def menu_router(message: Message):
     if not payload:
         return
 
+    if payload.get("cmd") != "menu":
+        return
+
     match payload.get("cmd"):
         case "menu_date":
             await add_user(
@@ -103,3 +106,5 @@ async def menu_router(message: Message):
                     menu_date.isoformat(),
                     message.from_id,
                 )
+        case _:
+            return
